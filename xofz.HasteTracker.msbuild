@@ -1,0 +1,47 @@
+<Project DefaultTargets="ChangeVersion;Build;Deploy" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+
+  <Import Project="$(MSBuildExtensionsPath)\MSBuildCommunityTasks\MSBuild.Community.Tasks.Targets" />
+
+
+  <PropertyGroup>
+    <Version>$(BUILD_NUMBER)</Version>
+    <ProjectName>xofz.HasteTracker</ProjectName>
+    <BuildDir>$(ProjectName)\bin\Release</BuildDir>
+    <DeployFolder>H:\Dropbox\xofz.Apps\HasteTracker\$(ProjectName)-$(Version)</DeployFolder>
+  </PropertyGroup>
+
+
+  <Target Name="ChangeVersion">
+    <AssemblyInfo
+      CodeLanguage="CS" 
+      OutputFile="$(ProjectName)\Properties\AssemblyInfo.cs"
+      AssemblyTitle="$(ProjectName)" 
+      AssemblyDescription="View current haste stat for your World of Warcraft character"
+      AssemblyConfiguration=""
+      AssemblyCompany="x(z)"
+      AssemblyProduct="HasteTracker"
+      AssemblyCopyright="Copyright (c) x(z)"
+      AssemblyTrademark=""
+      ComVisible="false"
+      Guid="b1e9da37-728f-44c0-8330-d1b018285f5b"
+      AssemblyVersion="$(Version)"
+      AssemblyFileVersion="$(Version)" />
+  </Target>
+
+
+  <Target Name="Build" DependsOnTargets="ChangeVersion">
+    <RemoveDir Directories="$(BuildDir)" />
+    <MSBuild Projects="$(ProjectName).sln" Targets="Build" Properties="Configuration=Release;Platform=Any CPU" />
+  </Target>
+  
+
+  <Target Name="Deploy" DependsOnTargets="Build">
+    <MakeDir Directories="$(DeployFolder)" Condition="!Exists('$(DeployFolder)')"/>
+    <ItemGroup>
+      <FilesToMove Include="$(BuildDir)\$(ProjectName).exe" />
+      <FilesToMove Include="$(BuildDir)\$(ProjectName).exe.config" />
+    </ItemGroup>
+    <MV SourceFiles="@(FilesToMove)" DestinationFolder="$(DeployFolder)" />
+  </Target>
+</Project>

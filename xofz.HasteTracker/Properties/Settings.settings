@@ -1,0 +1,21 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="xofz.HasteTracker.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PublicApiKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Enter public key here</Value>
+    </Setting>
+    <Setting Name="Location" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">us</Value>
+    </Setting>
+    <Setting Name="CharacterName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Enter character name here</Value>
+    </Setting>
+    <Setting Name="Realm" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Realm name goes here</Value>
+    </Setting>
+    <Setting Name="ApiSecret" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Enter API secret here</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

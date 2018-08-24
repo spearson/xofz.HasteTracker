@@ -1,10 +1,13 @@
 ﻿namespace xofz.HasteTracker
 {
+    using System;
+    using System.Diagnostics;
     using System.Threading;
     using System.Windows.Forms;
     using xofz.UI.Forms;
     using xofz.HasteTracker.Properties;
     using xofz.HasteTracker.UI;
+    using Action = xofz.Action;
 
     public partial class MainForm 
         : FormUi, HomeUi
@@ -144,16 +147,27 @@
             this.Visible = false;
         }
 
-        private void notifyIcon_MouseClick(object sender, MouseEventArgs e)
+        private volatile Stopwatch deactivatedTimer;
+
+        protected override void OnDeactivate(EventArgs e)
+        {
+            base.OnDeactivate(e);
+
+            this.deactivatedTimer = Stopwatch.StartNew();
+        }
+
+        private void notifyIcon_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left)
             {
                 return;
             }
 
+            this.deactivatedTimer?.Stop();
             if (this.Visible)
             {
-                if (this.WindowState == FormWindowState.Minimized)
+                if (!this.Focused && this.deactivatedTimer?.ElapsedMilliseconds
+                    > SystemInformation.DoubleClickTime)
                 {
                     this.WindowState = FormWindowState.Normal;
                     this.Activate();

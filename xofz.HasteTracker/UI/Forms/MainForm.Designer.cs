@@ -119,6 +119,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "x(z) HasteTracker";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.this_FormClosing);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDown);
             this.ResumeLayout(false);
             this.PerformLayout();
 

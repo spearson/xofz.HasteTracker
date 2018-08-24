@@ -56,6 +56,19 @@
                     () => this.ui.CharacterName = charName);
             });
 
+            w.Run<VersionReader>(vr =>
+            {
+                var version = vr.Read();
+                var coreVersion = vr.ReadCoreVersion();
+                UiHelpers.Write(
+                    this.ui,
+                    () =>
+                    {
+                        this.ui.Version = version;
+                        this.ui.CoreVersion = coreVersion;
+                    });
+            });
+
             w.Run<Navigator>(n => n.RegisterPresenter(this));
         }
 

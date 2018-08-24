@@ -34,6 +34,8 @@
             this.hasteRatingLabel = new System.Windows.Forms.Label();
             this.hastePercentageLabel = new System.Windows.Forms.Label();
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.coreVersionLabel = new System.Windows.Forms.Label();
+            this.versionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -82,10 +84,31 @@
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
             // 
+            // coreVersionLabel
+            // 
+            this.coreVersionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.coreVersionLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.coreVersionLabel.Location = new System.Drawing.Point(231, 183);
+            this.coreVersionLabel.Margin = new System.Windows.Forms.Padding(0);
+            this.coreVersionLabel.Name = "coreVersionLabel";
+            this.coreVersionLabel.Size = new System.Drawing.Size(144, 29);
+            this.coreVersionLabel.TabIndex = 4;
+            // 
+            // versionLabel
+            // 
+            this.versionLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.versionLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.versionLabel.Location = new System.Drawing.Point(12, 183);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(144, 29);
+            this.versionLabel.TabIndex = 5;
+            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(384, 161);
+            this.ClientSize = new System.Drawing.Size(384, 221);
+            this.Controls.Add(this.versionLabel);
+            this.Controls.Add(this.coreVersionLabel);
             this.Controls.Add(this.hastePercentageLabel);
             this.Controls.Add(this.hasteRatingLabel);
             this.Controls.Add(this.label2);
@@ -108,6 +131,8 @@
         private System.Windows.Forms.Label hasteRatingLabel;
         private System.Windows.Forms.Label hastePercentageLabel;
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.Label coreVersionLabel;
+        private System.Windows.Forms.Label versionLabel;
     }
 }
 

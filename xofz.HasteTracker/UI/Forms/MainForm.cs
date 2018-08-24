@@ -11,14 +11,14 @@
     {
         public MainForm()
         {
-            InitializeComponent();
+            this.InitializeComponent();
             var cm = new ContextMenu();
             cm.MenuItems.Add(
-                new MenuItem()
+                new MenuItem
                 {
-                    Text = "E&xit"
+                    Text = @"E&xit"
                 });
-            cm.MenuItems[0].Click += exitMenuItem_Click;
+            cm.MenuItems[0].Click += this.exitMenuItem_Click;
             var ni = this.notifyIcon;
             ni.ContextMenu = cm;
             ni.Icon = Resources.HasteTracker_Icon;
@@ -81,6 +81,60 @@
         }
 
         private string characterName;
+
+        private const string BaseVersionText = @"v";
+
+        string HomeUi.Version
+        {
+            get
+            {
+                var text = this.versionLabel.Text;
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    return text;
+                }
+
+                return text.Substring(BaseVersionText.Length);
+            }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    this.versionLabel.Text = value;
+                    return;
+                }
+
+                this.versionLabel.Text = BaseVersionText + value;
+            }
+        }
+
+        private const string BaseCoreVersionText = "Powered by xofz.Core98 v";
+
+        string HomeUi.CoreVersion
+        {
+            get
+            {
+                var text = this.coreVersionLabel.Text;
+                if (string.IsNullOrWhiteSpace(text))
+                {
+                    return text;
+                }
+
+                return text.Substring(BaseCoreVersionText.Length);
+            }
+
+            set
+            {
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    this.coreVersionLabel.Text = value;
+                    return;
+                }
+
+                this.coreVersionLabel.Text = BaseCoreVersionText + value;
+            }
+        }
 
         private void this_FormClosing(
             object sender, 

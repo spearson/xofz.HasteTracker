@@ -11,5 +11,9 @@
         string HastePercentage { get; set; }
 
         string CharacterName { get; set; }
+
+        string Version { get; set; }
+
+        string CoreVersion { get; set; }
     }
 }

@@ -148,11 +148,14 @@
         }
 
         private volatile Stopwatch deactivatedTimer;
+        private volatile bool stayVisible;
 
         protected override void OnDeactivate(EventArgs e)
         {
-            base.OnDeactivate(e);
+            this.stayVisible = true;
 
+            base.OnDeactivate(e);
+            
             this.deactivatedTimer = Stopwatch.StartNew();
         }
 
@@ -166,11 +169,18 @@
             this.deactivatedTimer?.Stop();
             if (this.Visible)
             {
-                if (!this.Focused && this.deactivatedTimer?.ElapsedMilliseconds
-                    > SystemInformation.DoubleClickTime)
+                var focused = this.Focused;
+                if (!focused && this.deactivatedTimer?.ElapsedMilliseconds
+                    > Settings.Default.FocusLostMilliseconds)
                 {
+                    this.stayVisible = false;
                     this.WindowState = FormWindowState.Normal;
                     this.Activate();
+                    return;
+                }
+
+                if (focused && this.stayVisible)
+                {
                     return;
                 }
 

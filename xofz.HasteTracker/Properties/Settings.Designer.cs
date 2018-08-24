@@ -67,5 +67,14 @@ namespace xofz.HasteTracker.Properties {
                 return ((string)(this["ApiSecret"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200")]
+        public short FocusLostMilliseconds {
+            get {
+                return ((short)(this["FocusLostMilliseconds"]));
+            }
+        }
     }
 }

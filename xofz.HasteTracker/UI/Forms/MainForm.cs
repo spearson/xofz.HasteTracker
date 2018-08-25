@@ -166,11 +166,12 @@
                 return;
             }
 
-            this.deactivatedTimer?.Stop();
+            var dt = this.deactivatedTimer;
+            dt?.Stop();
             if (this.Visible)
             {
                 var focused = this.Focused;
-                if (!focused && this.deactivatedTimer?.ElapsedMilliseconds
+                if (!focused && dt?.ElapsedMilliseconds
                     > Settings.Default.FocusLostMilliseconds)
                 {
                     this.stayVisible = false;
